@@ -96,6 +96,8 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::put('/updateAdminPassword', [AdminController::class, 'updateAdminPassword'])->name('updateAdminPassword');
     //edit users profile
     Route::get('/showUsers/editUser/{id}', [AdminPagesController::class , 'editUsers'])->name('showUsers.editUser');
+    //view users profile
+    Route::get('/viewUserProfile/{name_slug}', [AdminPagesController::class, 'viewUserProfile'])->name('viewUserProfile');
     
 });
 

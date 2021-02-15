@@ -58,7 +58,8 @@
                 orderable: false, width: "15%" 
             },
             { data: 'action', name: 'action', orderable: false, searchable: false , width: "15%"},
-        ]
+        ],
+        
     });
 
     </script>

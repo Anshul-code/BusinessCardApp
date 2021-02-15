@@ -108,6 +108,7 @@
               <p>&nbsp; All Users</p>
             </a>
           </li>
+       
           <!-- Settings -->
           <li class="nav-item {{ Route::is('editAdminPassword') || Route::is('editAdminProfile') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link {{ Route::is('editAdminPassword') || Route::is('editAdminProfile') ? 'active' : ''}}">
