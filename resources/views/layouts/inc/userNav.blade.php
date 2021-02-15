@@ -57,7 +57,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/dashboard" class="brand-link">
+    <a href="/userDashboard" class="brand-link">
       <span class="brand-text font-weight-light">User Dashboard</span>
     </a>
 
@@ -71,7 +71,7 @@
         </div>
      
         <div class="info">
-          <a href="/dashboard" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="/userDashboard" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 

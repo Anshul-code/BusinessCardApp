@@ -116,3 +116,61 @@
   </div>      
   </div>
 @endsection
+
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+    $('.data-table-portfolio').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "/getPortfolioDataAdminEdit/{{ $user_data->id }}",
+        columns: [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+            { data: 'skill', name: 'skill', width: "10%" },
+            { data: 'image_title', name: 'image_title' },
+            { data: 'about_image', name: 'about_image', width: "25%" },
+            { 
+                data: 'portfolio_image', name: 'portfolio_image' , render: function (data, type, full, meta) {
+                    return "<img src={{ URL::to('/') }}/storage/portfolio_images/" + data + " class='w-75' style='height: 160px;'>";
+                    },
+                orderable: false, width: "30%" 
+            },
+            {data: 'created_at' , name: 'created_at'},
+            { data: 'action', name: 'action', orderable: false, searchable: false , width: "10%"},
+        ]
+    });
+
+    //delete button on datatables
+    var id;
+    $(document).on('click', '.delete', function () {
+        id = $(this).attr('id');
+    });
+
+    $('#ok_button').click(function () {
+        $.ajax({
+            url: '/deletePortfolioImageAdminEdit/' + id,
+            beforeSend: function () {
+                $('#ok_button').text('Deleting');
+            },
+            type: 'DELETE',
+            data: {
+                submit: true,
+                _token: $('input[name="_token"]').val()
+            },
+            success: function () {
+                setTimeout(function () {
+                    $('#close').click();
+                    $('.data-table-portfolio').DataTable().ajax.reload();
+                    alert('Image Removed From Portfolio');
+                }, 2000);
+            }
+        });
+    });
+    </script>
+@endsection

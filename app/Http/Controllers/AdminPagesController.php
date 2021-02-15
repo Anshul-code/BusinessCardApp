@@ -85,5 +85,4 @@ class AdminPagesController extends Controller
         return view('pages.admin.portfolio')->with(['skills' => $skills, 'user_data' => $user]);
     }    
 
-
 }

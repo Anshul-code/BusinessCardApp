@@ -57,7 +57,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/dashboard" class="brand-link">
+    <a href="/showUsers/editUser/{{ $user_data->id }}" class="brand-link">
       <span class="brand-text font-weight-light">Edit User Profile</span>
     </a>
 
@@ -71,7 +71,7 @@
         </div>
      
         <div class="info">
-          <a href="/dashboard" class="d-block">{{ $user_data->name }}</a>
+          <a href="/showUsers/editUser/{{ $user_data->id }}" class="d-block">{{ $user_data->name }}</a>
         </div>
       </div>
 

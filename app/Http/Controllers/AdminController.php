@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AdditionalInfo;
 use App\Models\Portfolio;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -245,8 +246,46 @@ class AdminController extends Controller
             $portfolio->about_image = $request->about_image;
             $portfolio->save();
 
-            return redirect('portfolio')->with('success','Image Added to your Portfolio');
+            return redirect('portfolioAdminEdit')->with('success','Image Added to your Portfolio');
         }
+    }
+
+    //get Portfolio data from the database
+    public function getPortfolioDataAdminEdit(Request $request, $id){
+        if ($request->ajax()) {
+            $data = Portfolio::where('user_id', $id)->get();     
+            return datatables()->of($data)
+                    ->addIndexColumn()
+                    
+                    ->addColumn('action', function($row){
+
+                            $btn = '
+                                    <button class="btn btn-danger btn-sm delete" id="'. $row->id .'" data-toggle="modal" data-target="#confirmModal"><span class="fas fa-trash-alt"></span></button>
+                                   ';
+     
+                            return $btn;
+                    })
+                    ->editColumn('skill',function($row){
+                        $skill_name = Skill::where('id',$row->skill)->first();
+                        if($skill_name == null){
+                            return "N/A";
+                        }
+                        return $skill_name->skill;
+                    })
+                    ->editColumn('created_at',function($row){
+                        return date('Y-m-d H:i:s', strtotime($row->created_at));
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+    }
+
+    //delete selected portfolio image
+    public function deletePortfolioImageAdminEdit($id){
+        $image = Portfolio::findOrFail($id);
+        $image_name = Portfolio::select('portfolio_image')->where('id',$id)->first();
+        Storage::delete('public/portfolio_images/'.$image_name->portfolio_image);
+        $image->delete();
     }
 
 
