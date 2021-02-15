@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\ContactDatatable;
+use App\DataTables\ContactDataTable as DataTablesContactDataTable;
+use ContactDatatable;
 use App\Models\AdditionalInfo;
 use App\Models\Contact;
 use App\Models\Education;
@@ -153,7 +154,7 @@ class UserPagesController extends Controller
     //     return view('pages.user.contactMessages');
     // }
 
-    public function contactMessages(ContactDatatable $dataTable){
+    public function contactMessages(DataTablesContactDataTable $dataTable){
         return $dataTable->render('pages.user.contactMessages');
     }
 

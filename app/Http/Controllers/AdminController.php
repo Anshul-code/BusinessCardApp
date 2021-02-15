@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdditionalInfo;
+use App\Models\Portfolio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -172,6 +174,79 @@ class AdminController extends Controller
         $user->save();
 
         return redirect('editAdminPassword')->with('success', 'Password Changed Successfully');
+    }
+
+
+    //update users template
+    public function changeTemplateAdminEdit($id,Request $request){
+        $this->validate($request, [
+            'template' => 'required',
+        ]);
+
+        if($request->template == "creative" || $request->template == "cresume"){
+            $info_data = AdditionalInfo::where('user_id', $id)->first();
+            if(!isset($info_data)){
+                $data = new AdditionalInfo;
+                $data->user_id = $id;
+                $data->template = $request->template;
+                $data->save();
+
+                return redirect('/updateTemplateAdminEdit/'.$id)->with('success', 'Template Successfully Changed');
+
+            }
+            else{
+                $info_data->template = $request->template;
+                $info_data->save();
+    
+                return redirect('/updateTemplateAdminEdit/'.$id)->with('success', 'Template Successfully Changed');
+            }   
+        }
+        else{
+            return redirect('/updateTemplateAdminEdit/'.$id)->with('warning', 'please select template from above');
+        }
+    }
+
+    //add new image to users template
+    public function addPortfolioImageAdminEdit(Request $request, $id){
+        $this->validate($request, [
+            'portfolio_image' => 'required|image|max:3999',
+            'skill' => 'required',
+            'image_title' => 'required|min:4|max:20',
+            'about_image' => 'required|min:8|max:100'
+        ]);
+
+
+        //check if file is uploaded or not
+        if ($request->hasFile('portfolio_image')) {
+            //get file name with extension
+            $fileNameWithExt = $request->file('portfolio_image')->getClientOriginalName();
+            //get just file name
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //get just extension
+            $fileExt = $request->file('portfolio_image')->getClientOriginalExtension();
+
+            //create file name to store
+            $fileNameToStore = $fileName . '_' . time() . '.' . $fileExt;
+            $fileNameToStore = str_replace(' ', '_', $fileNameToStore);
+            //Upload the image and store it with new name in folder
+            $image_resize = Image::make($request->file('portfolio_image')->getRealPath());              
+            $image_resize->resize(600, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $path = $image_resize->save(public_path('storage/portfolio_images/'. $fileNameToStore));
+
+            //save data in database
+            $portfolio = new Portfolio;
+            $portfolio->user_id = $id;
+            $portfolio->skill = $request->skill;
+            $portfolio->portfolio_image = $fileNameToStore;
+            $portfolio->image_title = $request->image_title;
+            $portfolio->about_image = $request->about_image;
+            $portfolio->save();
+
+            return redirect('portfolio')->with('success','Image Added to your Portfolio');
+        }
     }
 
 

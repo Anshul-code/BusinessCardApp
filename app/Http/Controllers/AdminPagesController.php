@@ -70,10 +70,20 @@ class AdminPagesController extends Controller
         ]);
     }
 
-    
+    //change users profile template
+    public function updateTemplateAdminEdit($id){
+        $temp = AdditionalInfo::select('template')->where('user_id', $id)->first();
+        $user = User::where('id', $id)->where('role', 'user')->first();
+        return view('pages.admin.updateTemplateAdminEdit')->with(['temp' => $temp, 'user_data' => $user]);
+    }
 
 
-    
+    //user's portfolio
+    public function portfolioAdminEdit($id){
+        $skills = Skill::where('user_id', $id)->get();
+        $user = User::where('id', $id)->where('role', 'user')->first();
+        return view('pages.admin.portfolio')->with(['skills' => $skills, 'user_data' => $user]);
+    }    
 
 
 }

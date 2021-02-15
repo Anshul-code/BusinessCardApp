@@ -104,14 +104,14 @@
           <li class="nav-header" style="padding-top: 2px;">BUSINESS CARD MANAGEMENT</li>
           <!-- Portfolio -->
           <li class="nav-item">
-            <a href="/portfolioAdminEdit" class="nav-link {{ Route::is('portfolioAdminEdit') ? 'active' : '' }}">
+            <a href="/portfolioAdminEdit/{{$user_data->id}}" class="nav-link {{ Route::is('portfolioAdminEdit') ? 'active' : '' }}">
               <i class="fas fa-images"></i>
               <p>&nbsp; Portfolio</p>
             </a>
           </li>
           <!-- profile template -->
           <li class="nav-item">
-              <a href="/updateTemplateAdminEdit" class="nav-link {{ Route::is('updateTemplateAdminEdit') ? 'active' : ''}}">
+              <a href="/updateTemplateAdminEdit/{{$user_data->id}}" class="nav-link {{ Route::is('updateTemplateAdminEdit') ? 'active' : ''}}">
                 <i class="fas fa-object-group"></i>
                 <p>&nbsp; Change Profile Template</p>
               </a>

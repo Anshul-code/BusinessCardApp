@@ -93,9 +93,18 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::put('/editAdminProfile/uploadImage', [AdminController::class, 'change_profile_image'])->name('editAdminProfile.uploadImage');
     Route::get('/editAdminPassword', [AdminPagesController::class, 'editAdminPassword'])->name('editAdminPassword');
     Route::put('/updateAdminPassword', [AdminController::class, 'updateAdminPassword'])->name('updateAdminPassword');
-    //edit users profile
+    //edit users profile dashboard
     Route::get('/showUsers/editUser/{id}', [AdminPagesController::class , 'editUsers'])->name('showUsers.editUser');
-   
+    //change profile template
+    Route::get('/updateTemplateAdminEdit/{id}', [AdminPagesController::class, 'updateTemplateAdminEdit'])->name('updateTemplateAdminEdit');
+    Route::put('/changeTemplateAdminEdit/{id}', [AdminController::class, 'changeTemplateAdminEdit'])->name('changeTemplateAdminEdit');
+    //users portfolio
+    Route::get('/portfolioAdminEdit/{id}', [AdminPagesController::class, 'portfolioAdminEdit'])->name('portfolioAdminEdit');
+    Route::post('/addPortfolioImageAdminEdit/{id}', [AdminController::class, 'addPortfolioImageAdminEdit'])->name('addPortfolioImageAdminEdit');
+    Route::get('/getPortfolioDataAdminEdit/{id}', [AdminController::class, 'getPortfolioDataAdminEdit'])->name('getPortfolioDataAdminEdit');
+    Route::delete('/deletePortfolioImageAdminEdit/{id}', [AdminController::class, 'deletePortfolioImageAdminEdit'])->name('deletePortfolioImageAdminEdit');
+    Route::get('/fetch_dataAdminEdit/{slug}', [AdminPagesController::class, 'fetch_data'])->name('fetch_data');
+    Route::get('/fetch_data_cresumeAdminEdit/{slug}', [AdminPagesController::class, 'fetch_data_cresume'])->name('fetch_data_cresume');
 });
 
 
