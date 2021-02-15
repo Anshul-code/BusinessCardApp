@@ -28,7 +28,7 @@
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="/addSkillsAdminEdit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="/addSkillsAdminEdit/{{ $user_data->id }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -54,7 +54,7 @@
             <div class="icon">
               <i class="fas fa-images"></i>
             </div>
-            <a href="/portfolioAdminEdit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="/portfolioAdminEdit/{{ $user_data->id }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

@@ -288,6 +288,7 @@ class AdminController extends Controller
         $image->delete();
     }
 
+    
 
 
 }

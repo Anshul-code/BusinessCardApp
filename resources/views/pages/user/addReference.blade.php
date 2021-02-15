@@ -132,9 +132,9 @@
             { data: 'DT_RowIndex', name: 'DT_RowIndex' },
             { 
                 data: 'ref_image', name: 'ref_image' , render: function (data, type, full, meta) {
-                    return "<img src={{ URL::to('/') }}/storage/references_images/" + data + " class='w-75' style='height: 160px;'>";
+                    return "<img src={{ URL::to('/') }}/storage/references_images/" + data + " class=' img-circle elevation-2' style='width: 160px;height: 160px;'>";
                     },
-                orderable: false, width: "30%" 
+                orderable: false, width: "20%" 
             },
             { data: 'name', name: 'name' },
             { data: 'company', name: 'company', width: "10%" },

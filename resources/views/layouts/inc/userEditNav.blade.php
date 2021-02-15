@@ -71,7 +71,7 @@
         </div>
      
         <div class="info">
-          <a href="/showUsers/editUser/{{ $user_data->id }}" class="d-block">{{ $user_data->name }}</a>
+          <a href="/showUsers/editUser/{{ $user_data->id }}" class="d-block">{{ $user_data->name }} (<i class="fas fa-user-edit"></i>)</a>
         </div>
       </div>
 
@@ -132,37 +132,37 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/editUserProfile" class="nav-link {{ Route::is('userProfileAdminEdit') ? 'active' : ''}}">
+                <a href="/editUserProfileAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('userProfileAdminEdit') ? 'active' : ''}}">
                   <i class="fas fa-user-edit"></i>
                   <p>&nbsp; Profile Info<br></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/editAdditionalInfo" class="nav-link {{ Route::is('additionalInfoAdminEdit') ? 'active' : ''}}">
+                <a href="/editAdditionalInfoAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('additionalInfoAdminEdit') ? 'active' : ''}}">
                   <i class="fas fa-info-circle"></i>
                   <p>&nbsp; Add/Edit Additional Info<br></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/addSkills" class="nav-link {{ Route::is('addSkillsAdminEdit') ? 'active' : ''}}">
+                <a href="/addSkillsAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('addSkillsAdminEdit') ? 'active' : ''}}">
                   <i class="fas fa-chart-bar"></i>
                   <p>&nbsp; Add/Remove Skills<br></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/addExperience" class="nav-link {{ Route::is('addExperienceAdminEdit') ? 'active' : ''}}">
+                <a href="/addExperienceAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('addExperienceAdminEdit') ? 'active' : ''}}">
                   <i class="fas fa-briefcase"></i>
                   <p>&nbsp; Add/Remove Experience<br></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/addEducation" class="nav-link {{ Route::is('addEducationAdminEdit') ? 'active' : ''}}">
+                <a href="/addEducationAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('addEducationAdminEdit') ? 'active' : ''}}">
                   <i class="fas fa-briefcase"></i>
                   <p>&nbsp; Add/Remove Education<br></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/addReference" class="nav-link {{ Route::is('addReferenceAdminEdit') ? 'active' : ''}}">
+                <a href="/addReferenceAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('addReferenceAdminEdit') ? 'active' : ''}}">
                   <i class="fas fa-id-card"></i>
                   <p>&nbsp; Add/Remove Refrence<br></p>
                 </a>

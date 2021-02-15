@@ -52,8 +52,7 @@ Route::group(['middleware' => ['auth','user']], function (){
     Route::post('/addPortfolioImage', [UserController::class, 'addPortfolioImage'])->name('addPortfolioImage');
     Route::get('/getPortfolioData', [UserController::class, 'getPortfolioData'])->name('getPortfolioData');
     Route::delete('/deletePortfolioImage/{id}', [UserController::class, 'deletePortfolioImage'])->name('deletePortfolioImage');
-    Route::get('/fetch_data/{slug}', [UserPagesController::class, 'fetch_data'])->name('fetch_data');
-    Route::get('/fetch_data_cresume/{slug}', [UserPagesController::class, 'fetch_data_cresume'])->name('fetch_data_cresume');
+   
     //experience
     Route::get('/addExperience', [UserPagesController::class, 'addExperience'])->name('addExperience');
     Route::post('/newExperience', [ExperienceController::class, 'newExperience'])->name('newExperience');
@@ -103,8 +102,7 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::post('/addPortfolioImageAdminEdit/{id}', [AdminController::class, 'addPortfolioImageAdminEdit'])->name('addPortfolioImageAdminEdit');
     Route::get('/getPortfolioDataAdminEdit/{id}', [AdminController::class, 'getPortfolioDataAdminEdit'])->name('getPortfolioDataAdminEdit');
     Route::delete('/deletePortfolioImageAdminEdit/{id}', [AdminController::class, 'deletePortfolioImageAdminEdit'])->name('deletePortfolioImageAdminEdit');
-    Route::get('/fetch_dataAdminEdit/{slug}', [AdminPagesController::class, 'fetch_data'])->name('fetch_data');
-    Route::get('/fetch_data_cresumeAdminEdit/{slug}', [AdminPagesController::class, 'fetch_data_cresume'])->name('fetch_data_cresume');
+
 });
 
 
@@ -112,5 +110,7 @@ Route::group(['middleware' => ['auth','admin']], function(){
 Route::get('/{name_slug}', [UserPagesController::class, 'viewProfile'])->name('viewProfile');
 //store contact messages 
 Route::post('/contactUser/{id}', [ContactController::class, 'contactUser'])->name('contactUser');
-
+//fetch portfolio data
+Route::get('/fetch_data/{slug}', [UserPagesController::class, 'fetch_data'])->name('fetch_data');
+Route::get('/fetch_data_cresume/{slug}', [UserPagesController::class, 'fetch_data_cresume'])->name('fetch_data_cresume');
 
