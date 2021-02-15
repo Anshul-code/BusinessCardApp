@@ -4,14 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <title>{{ config('app.name') }}</title>
+ 
 
   <!-- datatables cdn -->
   <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-  <!-- datatable buttons -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">  
+ 
   <!-- Google Font: Source Sans Pro -->
-  <!-- google fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }} ">
@@ -33,13 +31,21 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    
+  <!-- Jquery | Chosen -->
+  <link rel="stylesheet" href="{{ asset('chosen/chosen.css') }}">
+ 
+  <!-- datatables button -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+ 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- admin navbar -->
-    @include('layouts.inc.adminNav')
+    @include('layouts.inc.userEditNav')
   <!-- admin navbar closed -->
   
   <!-- Content Wrapper. Contains page content -->
@@ -93,11 +99,14 @@
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-
-
 <!-- Custom scripts -->
-@stack('scripts')
-    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+
+<!-- jquery | chosen scripts -->
+<script src="{{ asset('chosen/chosen.jquery.js') }}" type="text/javascript"></script>
+@yield('scripts')
+
 @include('layouts.inc.messages')
 </body>
 </html>

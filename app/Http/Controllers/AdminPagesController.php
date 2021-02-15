@@ -11,6 +11,7 @@ use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class AdminPagesController extends Controller
 {
@@ -40,13 +41,13 @@ class AdminPagesController extends Controller
     public function getUsersData(Request $request){
         if($request->ajax()){
             $data = User::where('role','user')->get();
-            return datatables()->of($data)
+            return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
 
                             $btn = '
                                     <a class="btn btn-primary btn-sm edit" href="/showUsers/editUser/'. $row->id .'" ><span class="fas fa-edit"></span></a>
-                                    <a class="btn btn-dark btn-sm edit" href="/viewUserProfile/'. $row->name_slug .'" target="_blank"><span class="fas fa-eye"></span></a>
+                                    <a class="btn btn-dark btn-sm edit" href="/'. $row->name_slug .'" target="_blank"><span class="fas fa-eye"></span></a>
                                     ';
     
                             return $btn;
@@ -57,54 +58,19 @@ class AdminPagesController extends Controller
     }
     
     //edit users profile
-    public function editUsers(){
-        return view('pages.admin.editUserProfile');
-    }
-
-    //view user's profile
-    public function viewUserProfile($name_slug){
+    public function editUsers($id){
         
-        $data = User::where('name_slug',$name_slug)->first();
-        if($data != null){
-            $addInfo = AdditionalInfo::where('user_id',$data->id)->first();
-            $skillInfo = Skill::where('user_id', $data->id)->get();
-            $portfolio = Portfolio::where('user_id',$data->id)->paginate(2);
-            $portfolio_modal = Portfolio::where('user_id',$data->id)->get();
-            $experience = Experience::where('user_id', $data->id)->get();
-            $education = Education::where('user_id', $data->id)->get();
-            $ref_data = Reference::where('user_id', $data->id)->get();
-
-            if($addInfo != null && isset($addInfo->template)){
-                if($addInfo->template == "cresume"){
-                    $portfolio = Portfolio::where('user_id',$data->id)->paginate(3);
-                    return view('pages.user.cresume')->with([
-                        'data' => $data, 
-                        'addInfo' => $addInfo,
-                        'skill_info' => $skillInfo,
-                        'portfolio' => $portfolio,
-                        'portfolio_modal' => $portfolio_modal,
-                        'exp_data' => $experience,
-                        'edu_data' => $education,
-                        'ref_data' => $ref_data,
-                        ]);
-                }
-            }
-            
-            return view('pages.user.creative')->with([
-                'data' => $data,
-                'addInfo' => $addInfo,
-                'skill_info' => $skillInfo,
-                'portfolio' => $portfolio,
-                'portfolio_modal' => $portfolio_modal,
-                'exp_data' => $experience,
-                'edu_data' => $education,
-                'ref_data' => $ref_data,
-            ]);
-        }
-        else{
-            return redirect('/');
-        }
+        $skill = Skill::where('user_id', $id)->get();
+        $images = Portfolio::where('user_id', $id)->get();
+        $user = User::where('id', $id)->where('role', 'user')->first();
+        return view('pages.admin.editUserProfile')->with([
+            'skill' => $skill,
+            'images' => $images,
+            'user_data'=> $user 
+        ]);
     }
+
+    
 
 
     

@@ -17,7 +17,7 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>phone_number</th>
+                            <th>Phone No</th>
                             <th>DOB</th>
                             <th>Profile Image</th>
                             <th width="100px">Action</th>
@@ -33,23 +33,28 @@
 </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
+<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+
+<script src="{{ asset('/vendor/datatables/buttons.server-side.js')}}"></script>
+
 <script>
  $('.data-table-users').DataTable({
         processing: true,
         serverSide: true,
+        
         ajax: "{{ route('getUsersData') }}",
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex' },
             { data: 'name', name: 'name', width: "12%"},
             { data: 'email', name: 'email'},
-            { data: 'phone_number', name: 'phone_number', width: "10%" },
+            { data: 'phone_number', name: 'phone_number', width: "15%" },
             { data: 'dob' , name: 'dob', width: "12%" },
             { 
                 data: 'profile_image', name: 'profile_image' , render: function (data, type, full, meta) {
@@ -59,8 +64,9 @@
             },
             { data: 'action', name: 'action', orderable: false, searchable: false , width: "15%"},
         ],
-        
+       
     });
 
     </script>
-@endsection
+
+@endpush
