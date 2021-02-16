@@ -137,7 +137,7 @@
             { data: 'about_image', name: 'about_image', width: "25%" },
             { 
                 data: 'portfolio_image', name: 'portfolio_image' , render: function (data, type, full, meta) {
-                    return "<img src={{ URL::to('/') }}/storage/portfolio_images/" + data + " class='w-100' style='object-fit: none;object-position: center; height: 160px;width: 160px;'>";
+                    return "<img src={{ URL::to('/') }}/storage/portfolio_images/" + data + " class='w-100' style='object-fit: cover;object-position: center; height: 160px;width: 160px;'>";
                     },
                 orderable: false, width: "30%" 
             },

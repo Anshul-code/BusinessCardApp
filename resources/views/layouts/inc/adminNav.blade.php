@@ -68,7 +68,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         
         <div class="image">
-          <img src="{{ asset('/storage/profile_images/'.Auth::user()->profile_image) }}" class="img-circle elevation-2" alt="User Image" style="height: 35px;width:35px;">
+          <img src="{{ asset('/storage/profile_images/'.Auth::user()->profile_image) }}" class="img-circle elevation-2" alt="User Image" style="object-fit: cover;object-position: center;height: 35px;width:35px;">
         </div>
         <div class="info">
           <a href="/adminDashboard" class="d-block">{{ Auth::user()->name }} (<i class="fas fa-user-shield"></i>)</a>

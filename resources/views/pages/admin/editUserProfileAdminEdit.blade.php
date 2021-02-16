@@ -11,7 +11,12 @@
                   <div class="card-header">Update User's Profile</div>
                   <div class="card-body">
                       <div class="text-center py-2">
-                          <img src="{{ asset('/storage/profile_images/'.$user_data->profile_image) }}" alt="profileImage" class="img-circle elevation-2" height="160px" width="160px">
+                          <img src="{{ asset('/storage/profile_images/'.$user_data->profile_image) }}" alt="profileImage" class="img-circle elevation-2" 
+                          style="object-fit: cover;
+                        object-position: center; 
+                        "
+                    
+                          height="160px" width="160px">
                           <br>
                           @error('profile_image')
                               <small class="text-danger">

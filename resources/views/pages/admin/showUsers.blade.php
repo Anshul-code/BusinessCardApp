@@ -58,7 +58,7 @@
             { data: 'dob' , name: 'dob', width: "12%" },
             { 
                 data: 'profile_image', name: 'profile_image' , render: function (data, type, full, meta) {
-                    return "<img src={{ URL::to('/') }}/storage/profile_images/" + data + " class='img-circle elevation-2' style='width: 100px;height: 100px;'>";
+                    return "<img src={{ URL::to('/') }}/storage/profile_images/" + data + " class='img-circle elevation-2' style='object-fit: cover;object-position: center;width: 100px;height: 100px;'>";
                     },
                 orderable: false, width: "15%" 
             },
