@@ -67,7 +67,7 @@
                   </form>
                   @else
                       <h4 class="text-center">Add Some Skills Before Adding Portfolio Images !</h4>
-                      <p class="text-center"><a href="/addSkills">Click Here </a>to add Skills to your Profile</p>
+                      <p class="text-center"><a href="/addSkillsAdminEdit/{{ $user_data->id }}">Click Here </a>to add Skills to your Profile</p>
                   @endif
                   <hr>
                   <!-- Confirmation Modal -->

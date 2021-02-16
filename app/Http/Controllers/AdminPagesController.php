@@ -85,4 +85,54 @@ class AdminPagesController extends Controller
         return view('pages.admin.portfolio')->with(['skills' => $skills, 'user_data' => $user]);
     }    
 
+    //edit user profile info 
+    public function editUserProfileAdminEdit($id){
+        $user = User::where('id', $id)->where('role', 'user')->first();
+        return view('pages.admin.editUserProfileAdminEdit')->with('user_data', $user);
+    }
+
+    //edit user's additional info
+    public function editAdditionalInfoAdminEdit($id){
+        $user = User::where('id', $id)->where('role', 'user')->first();
+        $info = AdditionalInfo::where('user_id', $id)->first();
+        if($info != null){
+            return view('pages.admin.editAdditionalInfoAdminEdit')->with(['info'=> $info, 'user_data' => $user]);
+        }
+
+        return view('pages.admin.editAdditionalInfoAdminEdit')->with('user_data', $user); 
+    }
+    
+    //add  skills
+    public function addSkillsAdminEdit($id){
+        $user = User::where('id', $id)->where('role', 'user')->first();
+        $skills = Skill::where('user_id', $id)->get();
+        return view('pages.admin.addSkillsAdminEdit')->with(['skills' => $skills , 'user_data' => $user]);
+    }
+
+    //edit skills
+    public function editSkillAdminEdit($id, $user_id){
+        $dat = User::where('id', $user_id)->where('role', 'user')->first();
+        $skill_info = Skill::where('id',$id)->where('user_id', $user_id)->first();
+        return view('pages.admin.editSkillAdminEdit')->with(['skill_info' => $skill_info , 'user_data' => $dat]);
+    }
+
+    //add experiences
+    public function addExperienceAdminEdit($id){
+        $dat = User::where('id', $id)->where('role','user')->first();
+        return view('pages.admin.addExperienceAdmin')->with('user_data', $dat);
+
+    }
+
+    //add Education page
+    public function addEducationAdminEdit($id){
+        $dat = User::where('id', $id)->where('role','user')->first();
+        return view('pages.admin.addEducationAdmin')->with('user_data', $dat);
+    }
+
+    //add references
+    public function addReferenceAdminEdit($id){
+        $dat = User::where('id', $id)->where('role', 'user')->first();
+        return view('pages.admin.addReferenceAdmin')->with('user_data', $dat);
+    }
+
 }

@@ -354,7 +354,7 @@ class UserController extends Controller
         }
 
        
-        if($count <10 && ($count+$count_selected_skills) <10){
+        if($count <10 && ($count+$count_selected_skills) <=10){
             $skills = array();
             if(isset($request->skills)){
                 $skills = $request->skills;

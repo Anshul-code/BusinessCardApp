@@ -122,8 +122,8 @@
               <p>&nbsp; View Profile</p>
             </a>
           </li>
-          <li class="nav-item {{ Route::is('userProfileAdminEdit') || Route::is('additionalInfoAdminEdit') || Route::is('addSkillsAdminEdit') || Route::is('addExperienceAdminEdit') || Route::is('addEducationAdminEdit') || Route::is('addReferenceAdminEdit') ? 'menu-open' : ''}}">
-            <a href="#" class="nav-link {{ Route::is('userProfileAdminEdit') || Route::is('additionalInfoAdminEdit') || Route::is('addSkillsAdminEdit') || Route::is('addExperienceAdminEdit') || Route::is('addEducationAdminEdit') || Route::is('addReferenceAdminEdit') ? 'active' : ''}}">
+          <li class="nav-item {{ Route::is('editUserProfileAdminEdit') || Route::is('editAdditionalInfoAdminEdit') || Route::is('addSkillsAdminEdit') || Route::is('addExperienceAdminEdit') || Route::is('addEducationAdminEdit') || Route::is('addReferenceAdminEdit') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{ Route::is('editUserProfileAdminEdit') || Route::is('editAdditionalInfoAdminEdit') || Route::is('addSkillsAdminEdit') || Route::is('addExperienceAdminEdit') || Route::is('addEducationAdminEdit') || Route::is('addReferenceAdminEdit') ? 'active' : ''}}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Edit Profile
@@ -132,13 +132,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/editUserProfileAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('userProfileAdminEdit') ? 'active' : ''}}">
+                <a href="/editUserProfileAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('editUserProfileAdminEdit') ? 'active' : ''}}">
                   <i class="fas fa-user-edit"></i>
                   <p>&nbsp; Profile Info<br></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/editAdditionalInfoAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('additionalInfoAdminEdit') ? 'active' : ''}}">
+                <a href="/editAdditionalInfoAdminEdit/{{ $user_data->id }}" class="nav-link {{ Route::is('editAdditionalInfoAdminEdit') ? 'active' : ''}}">
                   <i class="fas fa-info-circle"></i>
                   <p>&nbsp; Add/Edit Additional Info<br></p>
                 </a>

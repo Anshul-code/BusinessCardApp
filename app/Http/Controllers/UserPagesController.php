@@ -149,11 +149,7 @@ class UserPagesController extends Controller
         return view('pages.user.addReference');
     }
 
-    //get contac Messages data
-    // public function contactMessages(){
-    //     return view('pages.user.contactMessages');
-    // }
-
+   
     public function contactMessages(DataTablesContactDataTable $dataTable){
         return $dataTable->render('pages.user.contactMessages');
     }

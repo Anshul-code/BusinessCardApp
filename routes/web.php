@@ -4,9 +4,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminPagesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\EducationControllerAdmin;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\ExperienceControllerAdmin;
 use App\Http\Controllers\PortfolioImageController;
 use App\Http\Controllers\ReferenceController;
+use App\Http\Controllers\ReferenceControllerAdmin;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPagesController;
 use Illuminate\Support\Facades\Auth;
@@ -102,7 +105,37 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::post('/addPortfolioImageAdminEdit/{id}', [AdminController::class, 'addPortfolioImageAdminEdit'])->name('addPortfolioImageAdminEdit');
     Route::get('/getPortfolioDataAdminEdit/{id}', [AdminController::class, 'getPortfolioDataAdminEdit'])->name('getPortfolioDataAdminEdit');
     Route::delete('/deletePortfolioImageAdminEdit/{id}', [AdminController::class, 'deletePortfolioImageAdminEdit'])->name('deletePortfolioImageAdminEdit');
-
+    //edit user's profile
+    Route::get('/editUserProfileAdminEdit/{id}', [AdminPagesController::class, 'editUserProfileAdminEdit'])->name('editUserProfileAdminEdit');
+    //update user's profile image
+    Route::put('/editUserProfileImage/{id}', [AdminController::class, 'editUserProfileImage'])->name('editUserProfileImage');
+    //update user's profile
+    Route::put('/updateUserProfileAdminEdit/{id}', [AdminController::class, 'updateUserProfileAdminEdit'])->name('updateUserProfileAdminEdit');
+    //update user's additional info
+    Route::get('/editAdditionalInfoAdminEdit/{id}', [AdminPagesController::class, 'editAdditionalInfoAdminEdit'])->name('editAdditionalInfoAdminEdit');
+    Route::put('/updateAdditionalInfoAdminEdit/{id}', [AdminController::class, 'updateAdditionalInfoAdminEdit'])->name('updateAdditionalInfoAdminEdit');
+    //edit or user's skill
+    Route::get('/addSkillsAdminEdit/{id}', [AdminPagesController::class, 'addSkillsAdminEdit'])->name('addSkillsAdminEdit');
+    Route::post('/addUserSkillAdminEdit/{id}', [AdminController::class, 'addUserSkillAdminEdit'])->name('addUserSkillAdminEdit');
+    Route::get('/editSkillAdminEdit/{id}/{user_id}',[AdminPagesController::class, 'editSkillAdminEdit'])->name('editSkillAdminEdit');
+    Route::put('/updateSkillAdminEdit/{id}/{user_id}', [AdminController::class, 'updateSkillAdminEdit'])->name('updateSkillAdminEdit');
+    Route::delete('/deleteSkillAdminEdit/{id}/{user_id}', [AdminController::class, 'deleteSkillAdminEdit'])->name('deleteSkillAdminEdit');
+    //experience
+    Route::get('/addExperienceAdminEdit/{id}', [AdminPagesController::class, 'addExperienceAdminEdit'])->name('addExperienceAdminEdit');
+    Route::post('/newExperienceAdminEdit/{id}', [ExperienceControllerAdmin::class, 'newExperienceAdminEdit'])->name('newExperienceAdminEdit');
+    Route::get('/getExperienceDataAdminEdit/{id}', [ExperienceControllerAdmin::class, 'getExperienceDataAdminEdit'])->name('getExperienceDataAdminEdit');
+    Route::delete('/deleteExperienceDataAdminEdit/{id}', [ExperienceControllerAdmin::class, 'deleteExperienceDataAdminEdit'])->name('deleteExperienceDataAdminEdit');
+    //education
+    Route::get('/addEducationAdminEdit/{id}', [AdminPagesController::class, 'addEducationAdminEdit'])->name('addEducationAdminEdit');
+    Route::post('/newEducationAdminEdit/{id}', [EducationControllerAdmin::class, 'newEducationAdminEdit'])->name('deleteEducationDataAdminEdit');
+    Route::get('/getEducationDataAdminEdit/{id}', [EducationControllerAdmin::class, 'getEducationDataAdminEdit'])->name('getEducationDataAdminEdit');
+    Route::delete('/deleteEducationDataAdminEdit/{id}', [EducationControllerAdmin::class, 'deleteEducationDataAdminEdit'])->name('deleteEducationDataAdminEdit');
+    //refrence
+    Route::get('/addReferenceAdminEdit/{id}', [AdminPagesController::class, 'addReferenceAdminEdit'])->name('addReferenceAdminEdit');
+    Route::post('/newReferenceAdminEdit/{id}', [ReferenceControllerAdmin::class, 'newReferenceAdminEdit'])->name('deleteReferenceDataAdminEdit');
+    Route::get('/getReferenceInfoAdminEdit/{id}', [ReferenceControllerAdmin::class, 'getReferenceInfoAdminEdit'])->name('getReferenceInfoAdminEdit');
+    Route::delete('/deleteReferenceDataAdminEdit/{id}', [ReferenceControllerAdmin::class, 'deleteReferenceDataAdminEdit'])->name('deleteReferenceDataAdminEdit');
+    
 });
 
 
